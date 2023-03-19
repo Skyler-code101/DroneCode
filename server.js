@@ -14,21 +14,7 @@ ws.on("connection", function (socket){
   socket.on("message",function(msg){
     message = msg;
     ws.clients.forEach(function each(client) {
-      testcommand(msg,client)
+      client.send("/" + msg)
     });
 })})
 
-function testcommand(msg,client){
-  if (msg = "blind")
-    {
-      client.send("/control.blind")
-    }
-  if (msg = "speach")
-    {
-      client.send("/control.speach")
-    }
-  if (msg = "context")
-    {
-      client.send("/control.context")
-    }
-}
