@@ -13,7 +13,13 @@ ws.on("connection", function (socket){
   
   socket.on("message",function(msg){
     message = msg;
+    ws.clients.forEach(function each(client) {
+        client.send(msg);
+
+    });
+
     console.log("client sent this : " + message);
+    
     });
   })
 
