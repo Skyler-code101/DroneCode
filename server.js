@@ -14,9 +14,9 @@ ws.on("connection", function (socket){
   socket.on("message",function(msg)
            {
     console.log("Message From a Client:" + msg)
-    socket.clients.foreach(function(c){
-      c.send(msg);
-    })
+    ws.clients.forEach(client => {
+      client.send(msg);
+    });
   })
 })
 
