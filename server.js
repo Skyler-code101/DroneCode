@@ -12,13 +12,23 @@ ws.on("connection", function (socket){
   console.log("A Client Entered")
   
   socket.on("message",function(msg){
-    message = msg; 
-      ws.clients.forEach(function each(client) {
-        client.send(message)
-    console.log("client sent this : " + message);
-  })
-  })
-})
+    message = msg;
+    ws.clients.forEach(function each(client) {
+      testcommand(msg,client)
+    });
+})})
 
-
-
+function testcommand(msg,client){
+  if (msg = "blind")
+    {
+      client.send("/control.blind")
+    }
+  if (msg = "speach")
+    {
+      client.send("/control.speach")
+    }
+  if (msg = "context")
+    {
+      client.send("/control.context")
+    }
+}
