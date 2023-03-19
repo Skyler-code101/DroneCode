@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
-    "websocket": "node websocket.js"
   },
   "dependencies": {
     "fastify": "^4.11.0",
