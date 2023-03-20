@@ -14,12 +14,13 @@ const ws = new Websocket.Server({
 let message;
 ws.on("connection", function (socket){
   console.log("A Client Entered")
-  
-  socket.on("message",function(msg){
-    message = msg;
-    console.log(msg);
-    ws.clients.forEach(function each(client) {
-      client.send("/" + msg)
-    });
-})})
+  socket.on('message', function message(data, isBinary) {
+  const message = isBinary ? data : data.toString();
+    console.log(message);
+    ws.clients.forEach(function (client){
+      client.send("/" + message)
+    })
+});
+
+})
 
