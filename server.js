@@ -22,5 +22,5 @@ ws.on("connection", function (socket){
     })
 });
 
-})/
+})
 
