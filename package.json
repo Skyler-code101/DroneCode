@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "ws": "^8.13.0",
-    "html-loader": "^4.2.0",
-    "webpack": "^5.76.2"
+    "html": "^1.0.0"
   },
   "engines": {
     "node": "14.x"
