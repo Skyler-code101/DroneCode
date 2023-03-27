@@ -1,7 +1,5 @@
 
 // Websocket ip === wss://daffy-nervous-chatter.glitch.me/
-
-
 const Websocket = require('ws');
 
 const Port = 4000;
