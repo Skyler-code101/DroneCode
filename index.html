@@ -4,7 +4,7 @@
     <script type="text/javascript" src="node/server.js"></script>
 </head>
    <script type = "text/javascript">
-         function WebSocketTest() {
+         function WebSocketTest(var peram) {
             
             if ("WebSocket" in window) {
                // Let us open a web socket
@@ -19,10 +19,13 @@
 				
                ws.onmessage = function (evt) { 
                   var received_msg = evt.data;
-                 if (received_msg == "/Online")
+                 if (peram = "ping")
+                   {
+                     if (received_msg == "/Online")
                    {
                      alert("Drone Is Online");
                    }
+                 
                };
 				
                ws.onclose = function() { 
@@ -48,7 +51,7 @@
   </button>
   <br>
   <br>
-  <button onclick="WebSocketTest()">
+  <button onclick="WebSocketTest('ping')">
     Ping Drone
   </button>
   </body>
