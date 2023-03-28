@@ -3,6 +3,36 @@
   <title>Skyler's Drone Program</title>
     <script type="text/javascript" src="node/server.js"></script>
 </head>
+   <script type = "text/javascript">
+         function WebSocketTest() {
+            
+            if ("WebSocket" in window) {
+               // Let us open a web socket
+               var ws = new WebSocket("wss://daffy-nervous-chatter.glitch.me/");
+				
+               ws.onopen = function() {
+                  
+                  // Web Socket is connected, send data using send()
+                  ws.send("ping");
+                 
+               };
+				
+               ws.onmessage = function (evt) { 
+                  var received_msg = evt.data;
+                 if (received_msg == "Online")
+                 alert("Drone Is Online")
+               };
+				
+               ws.onclose = function() { 
+                  
+               };
+            } else {
+              
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+         }
+      </script>
 <body> 
   <font size="+5">Skyler Zero Drone Program</font>
   <img src="https://cdn.glitch.global/912566cf-aad4-49ee-a8d4-f4f9caf1511d/photo.jpg?v=1679953442132" alt="Skyler Drone" style="width:200px;height:200px;">
@@ -16,7 +46,7 @@
   </button>
   <br>
   <br>
-  <button onclick="PingDrone()">
+  <button onclick="WebSocketTest()">
     Handling Help
   </button>
   </body>
