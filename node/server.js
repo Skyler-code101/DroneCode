@@ -1,25 +1,23 @@
-
-var http = require('http'),
-    fs = require('fs');
-
-
-fs.readFile('./index.html', function (err, html) {
+const express = require('express')
+const app = express()
+const fs = require('fs');
+app.get('/', function (req, res) {
+  fs.readFile('./index.html', function (err, html) {
     if (err) {
         throw err; 
-    }       
-    http.createServer(function(request, response) {  
-        response.writeHeader(200, {"Content-Type": "text/html"});  
-        response.write(html);  
-        response.end();  
-    }).listen(8000);
-});
+    }
+        res.writeHeader(200, {"Content-Type": "text/html"});  
+        res.write(html);  
+        res.end();
+  })
+})
 
+const lisenter = app.listen(3000)
 const Websocket = require('ws');
 
-const Port = 9000;
 
 const ws = new Websocket.Server({
-  port : Port
+  server : lisenter
 });
 let message;
 ws.on("connection", function (socket){
