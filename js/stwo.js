@@ -1,4 +1,5 @@
 var ws
+var Username
 function load()
 {
   let person = prompt("Please enter your name", "");
@@ -7,6 +8,7 @@ if (person == null || person == "") {
   alert("No user Entered Returning")
   window.location.href='https://skyler-drone-sys.glitch.me/index.html';
 } else {
+  Username = person
   Link(person)
 }
 }
@@ -65,4 +67,18 @@ function blind()
                 
               }
 
+}
+function message()
+{
+  let message = prompt("please Type Message", "");
+let text;
+if (message == null || message == "") {
+  alert("No Message Enter Canceling")
+} else {
+  if ("WebSocket" in window) {
+               // Let us open a web socket
+                ws.send("/message#" +Username + "#" + message)
+                
+              }
+}
 }
