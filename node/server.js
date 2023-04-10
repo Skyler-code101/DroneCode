@@ -46,7 +46,7 @@ neos.on("friendAdded",(friend)=>{
     }
     console.log(friend) //New Friend
 })
-neos.Login("SkylerDroneAPI", "Muffin1010#")
+neos.Login(null, null)
 
 const ws = new Websocket.Server({
   server : lisenter
