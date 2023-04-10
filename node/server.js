@@ -35,6 +35,19 @@ const Websocket = require('ws');
 
 var fs = require('fs')
 
+const Neos = require('@bombitmanbomb/neosjs')
+const neos = new Neos()
+neos.on("login",(obj)=>{
+    console.log("Neos Bot Online")
+})
+neos.on("friendAdded",(friend)=>{
+    if (friend.FriendStatus == "Requested") {
+        neos.AddFriend(friend) // Accept the Friend Request
+    }
+    console.log(friend) //New Friend
+})
+neos.Login("SkylerDroneAPI", "Muffin1010#")
+
 const ws = new Websocket.Server({
   server : lisenter
 });
@@ -46,6 +59,16 @@ ws.on("connection", function (socket){
     ws.clients.forEach(function (client){
       client.send("" + message)
     })
+    if (message.includes("/control."))
+      {
+        neos.SendTextMessage("U-CinnamonRoll101", "Command Recived");
+      }else if (message.includes("/message#"))
+        {
+          const myArray = message.split("#");
+          let User = myArray[1];
+          let Message = myArray[2];
+          neos.SendTextMessage("U-CinnamonRoll101", "Message Recived \n User: " + User + "\n Message: " + Message);
+        }
     fs.appendFile('node/log.txt',"Client Has Sent : " + message, function (err) {
   if (err) {
     // append failed
@@ -56,45 +79,3 @@ ws.on("connection", function (socket){
 });
 })
 
-const Neos = require('@bombitmanbomb/neosjs')
-const neos = new Neos()
-neos.on("login",(obj)=>{
-    console.log("Neos Bot Online")
-})
-neos.on("friendAdded",(friend)=>{
-    if (friend.FriendStatus == "Requested") {
-        neos.AddFriend(friend)
-    }
-})
-neos.on("messageReceived",(message)=>{
-  if (message.Content == "/statuefy")
-    {
-      ws.clients.forEach(function (client){
-      client.send("/control.statue")
-    })
-      neos.SendTextMessage(message.SenderId,"Command Sent") 
-    }else if (message.Content == "/restrictContext")
-      {
-        
-      ws.clients.forEach(function (client){
-      client.send("/control.context")
-    })
-      neos.SendTextMessage(message.SenderId,"Command Sent") 
-      }else if (message.Content == "/blind")
-      {
-        
-      ws.clients.forEach(function (client){
-      client.send("/control.blind")
-    })
-      neos.SendTextMessage(message.SenderId,"Command Sent") 
-      }else if (message.Content == "/speech")
-      {
-        
-      ws.clients.forEach(function (client){
-      client.send("/control.speach")
-    })
-      neos.SendTextMessage(message.SenderId,"Command Sent") 
-      }
-})
-
-neos.Login("SkylerDroneAPI", "Muffin1010#")
