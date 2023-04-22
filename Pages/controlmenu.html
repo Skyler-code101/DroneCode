@@ -2,10 +2,18 @@
   <head>
     <title>Skyler's Drone Program Socket Link</title>
     <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/912566cf-aad4-49ee-a8d4-f4f9caf1511d/Trans Flag.jpg?v=1679956888849">
-    <script src="js/stwo.js"></script>
+    <script src="js/sc.js"></script>
+    <script>
+      window.onbeforeunload = function(){
+  localStorage['Essencals:UsernameToSkylerDrone'] = "null";
+  return 'Are you sure you want to leave?';
+};
+    </script>
 <link rel="stylesheet" href="css/app.css">
   </head>
-  <body onload="load()">
+  <body onload="Link()">
+
+    
     <div class="center">
     <button class="socketbutton" onclick="statue()">
     Statue Drone
