@@ -38,7 +38,6 @@ neos.on("login",(obj)=>{
     console.log("Neos Bot Online")
 })
 
-neos.Login("SkylerDroneAPI", "Muffin1010#")
 
 const ws = new Websocket.Server({
   server : lisenter
